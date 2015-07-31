@@ -11,6 +11,7 @@ var mysql = require('mysql');
 var myConnection = require('express-myconnection');
 
 var service = require('./service/service_common');
+var service_admin = require('./service/service_admin_log');
 
 module.exports = app;
 
@@ -23,6 +24,16 @@ var dbOptions = {
     port: 3306,
     database: 'portal114'
 };
+
+// cafe24 database info
+//var dbOptions = {
+//    connectionLimit: 1,
+//    host: '10.0.0.1',
+//    user: 'rhkdgh412',
+//    password: 'xghhy41@',
+//    port: 3306,
+//    database: 'rhkdgh412'
+//};
 
 app.use(myConnection(mysql, dbOptions, 'pool'));
 
@@ -67,6 +78,10 @@ app.get('/cate1/:bbs_id', service.queryCate1List);
 
 // 소분류 조회
 app.get('/cate2/:bbs_id', service.queryCate2List);
+
+
+/* 사용자 로그 분석 admin */
+app.post('/admin/onetwothree/log', service_admin.insert123UserLog);
 
 if (!module.parent) {
     app.listen(8001);
