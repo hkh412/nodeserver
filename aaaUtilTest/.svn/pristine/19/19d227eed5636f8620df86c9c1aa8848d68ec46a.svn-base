@@ -1,0 +1,18 @@
+/**
+ * Created by hkh on 2015-02-04.
+ */
+//var text = '(서울 마포구) ';
+var text = '(서울 마포구) - 생산 건설';
+var pattern = /[(][^\s]+\s/;
+var result = pattern.exec(text);
+console.log(result);
+try {
+    //if (result) {
+    result = result[0].replace(/[(\s]/g, '');
+//}
+} catch (err) {
+    console.log(err);
+}
+
+
+console.log(result+" length:"+result.length);

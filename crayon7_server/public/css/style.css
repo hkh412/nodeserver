@@ -1,0 +1,110 @@
+body {
+    font-family: 'Nanum Gothic', serif;
+}
+
+.sub-header {
+    font: normal 20px 'Nanum Gothic', serif;
+}
+
+.navbar-form {
+    margin-top: 0;
+}
+
+.navbar-group-inline {
+    display: inline;
+    margin-left: 3px;
+}
+
+.search-box {
+    display: inline-block;
+    width: auto;
+    vertical-align: bottom;
+}
+
+.dropdown-title {
+    margin-right: 3px;
+}
+.dropdown-frame {
+    overflow: auto;
+    min-width: 100px;
+    max-height: 250px;
+}
+
+.custom-input-group {
+    padding: 0 0 8px 0;
+}
+.custom-btn-group {
+    margin-right: 8px;
+    /*margin-le ft: 8px;*/
+}
+
+ul.pagination.narrow {
+    margin: 10px 0;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.table-responsive {
+    overflow: hidden;
+}
+
+.text-wrapper {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #000000;
+}
+.text-wrapper:hover {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #000099;
+}
+
+a:hover {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+a:link {
+    text-decoration: none;
+}
+
+.meta-info {
+    color: #666;
+    display: inline-block;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    /*height: 60px;*/
+    /*background-color: #f5f5f5;*/
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}

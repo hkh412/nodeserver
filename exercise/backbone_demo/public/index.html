@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Backbone.js Basic</title>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="underscore.js"></script>
+    <script src="backbone.js"></script>
+    <script>
+        var Book = Backbone.Model.extend({
+//            urlRoot: '/books',
+            idAttribute: '_id'
+        });
+
+        var Books = Backbone.Collection.extend({
+            url: '/books'
+        });
+
+        var books = new Books();
+        books.fetch({
+            success: function() {
+                alert(JSON.stringify(books.toJSON(), null, 2));
+                // 새로운 객체 생성
+                books.create(new Book({
+                    name: ' 새로운 책',
+                    isbn: '123456789',
+                    today_count: 10
+                }), {
+                    success: function () {
+                    }
+                });
+            }
+        });
+//        var book = new Book({_id: '1'});
+//        book.fetch({
+//            success: function() {
+//                book.set('today_sell', 100);
+//                // 동기화합니다.
+//                book.save({ success: function() {} });
+//                book.destroy({ success: function() {} });
+//            }
+//        });
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

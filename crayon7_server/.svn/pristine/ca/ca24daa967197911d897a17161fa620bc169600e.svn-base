@@ -1,0 +1,10 @@
+<!-- 글번호 -->
+<td><%=id%></td>
+<!-- 제목 -->
+<td class="col-md-5"><span class="text-wrapper"><%=title%></span></td>
+<!-- 지역 -->
+<td><%=city1%>&nbsp;<%=city2%></td>
+<!-- 분류 -->
+<td><%=cate1%></td>
+<!-- 날짜 -->
+<td><%=ctdt%></td>

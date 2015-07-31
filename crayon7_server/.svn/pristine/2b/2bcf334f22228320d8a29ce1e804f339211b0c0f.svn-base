@@ -1,0 +1,48 @@
+/**
+ * Created by hkh on 2015-02-17.
+ */
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'app',
+    'views/ListFrameView',
+], function($, _, Backbone, App, ListFrameView){
+    var AppRouter = Backbone.Router.extend({
+        routes: {
+            '':         'showHome',
+            'job':      'showList',
+            'resume':   'showList',
+            'house':    'showList',
+            'market':   'showList',
+            'car':      'showList',
+            'adver':    'showList'
+        },
+        showHome: function(){
+            location.hash = App.default.bbs.bbs_id;
+            App.events.trigger('bbsSelect', App.default.bbs.bbs_name);
+        },
+        /**
+         * 글 목록 생성 router
+         */
+        showList: function(){
+            var bbs_id = location.hash.replace('#', '');
+
+            if (!App.views.listFrameView) {
+                App.views.listFrameView = new ListFrameView(bbs_id);
+            } else {
+                App.views.listFrameView.bbs_id = bbs_id;
+                App.views.listFrameView.render();
+            }
+        }
+    });
+
+    var initialize = function() {
+        var app_router = new AppRouter();
+        Backbone.history.start();
+        location.hash = App.default.bbs.bbs_id;     // job
+    };
+    return {
+        initialize: initialize
+    };
+});

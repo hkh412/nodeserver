@@ -1,0 +1,19 @@
+-- BBS data;
+
+INSERT INTO portal114.bbs(id, name, display, ctdt)
+values('job', '구인정보',  1, NOW());
+
+INSERT INTO portal114.bbs(id, name, display, ctdt)
+values('resume', '구직정보', 2, NOW());
+
+INSERT INTO portal114.bbs(id, name, display, ctdt)
+values('house', '부동산', 3, NOW());
+
+INSERT INTO portal114.bbs(id, name, display, ctdt)
+values('market', '중고시장', 4, NOW());
+
+INSERT INTO portal114.bbs(id, name, display, ctdt)
+values('car', '중고차', 5, NOW());
+
+INSERT INTO portal114.bbs(id, name, display, ctdt)
+values('adver', '업체홍보', 6, NOW());

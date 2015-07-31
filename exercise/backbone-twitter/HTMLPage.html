@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Backbone.js Basic</title>
+    <link rel="stylesheet" href="bootstrap.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="underscore.js"></script>
+    <script src="backbone.js"></script>
+
+    <script id="item-template" type="text/template">
+        <h4><%= from_user %></h4>
+        <p><%= text %></p>
+        <hr />
+    </script>
+
+    <script>
+        var ItemView = Backbone.View.extend({
+            tagName: 'div',
+            template: _.template($('#item-template').html()),
+            render: function(){
+                this.$el.html(this.template(this.model.toJSON()));
+
+                return this;
+            }
+        });
+
+        var MainView = Backbone.View.extend({
+            query: 'html5',
+
+            el: '#main-container',
+            events: {
+                'submit form': function(event) {
+                    // query 속성을 지정합니다.
+                    this.query = this.$('input[type="text"]').val();
+                    this.render();
+
+                    // 초기화
+                    this.$('input[type="text"]').val();
+                    event.preventDefault();
+                }
+            },
+            render: function() {
+                var url = 'http://search.twitter.com/search.json?q=' + this.query + '&callback=?';
+
+                $.getJSON(url, function(data){
+                    this.$('#tweet-container').empty();
+
+                    data.results.forEach(function(item){
+                        var view = new ItemView({
+                            model: new Backbone.Model(item)
+                        });
+
+                        view.render().$el.appendTo(this.$('#tweet-container'));
+                    }.bind(this));
+                }.bind(this));
+
+                return this;
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            var view = new MainView();
+            view.render();
+        });
+    </script>
+</head>
+<body>
+    <div id="main-container" class="container">
+        <h1>Tweeter</h1>
+        <form class="form-inline">
+            <input type="text" />
+            <input type="submit" class="btn" value="find" />
+        </form>
+        <hr />
+        <div id="tweet-container">
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<div>
+    <h3>글 등록</h3>
+    <hr />
+</div>
+
+<!-- 지역/분류 -->
+<div class="input-group custom-input-group">
+    <div class="btn-group custom-btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown" aria-expanded="false">
+            <span id="bbs-menu-title">게시판</span>&nbsp;<span class="caret"></span>
+        </button>
+        <ul id="bbs-menu-select" class="dropdown-menu" role="menu">
+            <li><a href="javascript:void(0)" data-value="job">구인정보</a></li>
+            <li><a href="javascript:void(0)" data-value="resume">구직정보</a></li>
+            <li><a href="javascript:void(0)" data-value="house">부동산</a></li>
+            <li><a href="javascript:void(0)" data-value="market">중고시장</a></li>
+            <li><a href="javascript:void(0)" data-value="car">중고차</a></li>
+            <li><a href="javascript:void(0)" data-value="adver">업체광고</a></li>
+        </ul>
+    </div><!-- /btn-group -->
+
+    <div id="navbar-dropdown-group" class="navbar-group-inline">
+    </div>
+</div>
+
+<div class="input-group custom-input-group">
+    <span class="input-group-addon">제목</span>
+    <input id='input-title' type="text" class="form-control" placeholder="제목을 입력하세요." aria-describedby="sizing-addon1">
+</div>
+
+<div class="input-group custom-input-group">
+    <span class="input-group-addon">내용</span>
+    <textarea id='ta-content' class="form-control" placeholder="" rows="12"></textarea>
+</div>
+
+<div class="input-group custom-input-group">
+    <button type="submit" class="btn btn-default">이미지 추가</button>
+</div>
+
+<div class="input-group">
+    <div class="checkbox">
+        <label>
+            <input id="input-policy" type="checkbox" value="">
+            이용약관에 동의합니다.
+        </label>
+    </div>
+</div>
+<hr />
+
+<button id="btn-submit" type="submit" class="btn btn-success bold-text">등록하기</button>
+<!--<input type="file" class="btn btn-default">-->
+<!--<p class="help-block">Example block-level help text here.</p>-->

@@ -1,0 +1,39 @@
+/**
+ * Created by hkh on 2015-02-02.
+ */
+var http = require('http');
+var cheerio = require('cheerio');
+var $ = {};
+
+var hostname = "http://www.114114.com";
+var paths = [
+    "/board.php?bo_mode=list&bo_table=job&city1=전국",
+    "/board.php?bo_mode=list&bo_table=resume&city1=전국",
+    "/board.php?bo_mode=list&bo_table=house&city1=전국",
+    "/board.php?bo_mode=list&bo_table=sale&city1=전국",
+    "/board.php?bo_mode=list&bo_table=car&city1=전국",
+    "/board.php?bo_mode=list&bo_table=service&city1=전국",
+];
+
+var requestTask = function () {
+    console.log(paths[1]);
+
+    var html = "";
+    http.get(hostname+paths[0], function(res) {
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            html += chunk;
+        });
+        res.on('end', function() {
+            //console.log(html);
+            $ = cheerio.load(html, {decodeEntities: false});
+            parseHtml($);
+        });
+    });
+};
+
+var parseHtml = function($) {
+    var html = $('html').html();
+    console.log(html);
+};
+requestTask();

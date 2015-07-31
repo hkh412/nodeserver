@@ -1,0 +1,262 @@
+
+/**
+ * Created by hkh on 2015-02-11.
+ */
+var async = require('async');
+var sqlCommon = require('../sql/sql_common');
+var _ = require('underscore');
+
+/**
+ * 글 목록 조회 서비스
+ * @param req
+ * @param res
+ */
+exports.queryPostList = function(req, res, next) {
+
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        var bbs_id = req.params["bbs_id"];
+        connection.query(sqlCommon.QUERY_POST_LIST, [bbs_id], function(err, results){
+            if (err) return next(err);
+
+            console.log(results);
+            res.send(results);
+        });
+    });
+};
+
+/**
+ * 글 상세 조회 서비스
+ * @param req
+ * @param res
+ */
+exports.queryPostDetail = function(req, res, next) {
+
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        var id = req.params["id"];
+        connection.query(sqlCommon.QUERY_POST_DETAIL, [id], function(err, results){
+            if (err) return next(err);
+
+            console.log(results);
+            res.send(results);
+        });
+    });
+};
+
+/**
+ * 글 입력 서비스
+ * @param req
+ * @param res
+ */
+exports.insertPost = function(req, res, next) {
+
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        // get city1 id
+        var data = {
+            title: req.body.title,
+            content: req.body.content,
+            bbs_id: req.body.bo_table
+        };
+
+        // async.parallel() - https://github.com/caolan/async#parallel
+        async.parallel({
+            city1_id: function(callback){
+                connection.query(sqlCommon.QUERY_CITY_1, [req.body.city1], function(err, results) {
+                    if (err) callback(err, null);
+                    callback(null, results[0].id);
+                });
+            },
+            city2_id: function(callback){
+                connection.query(sqlCommon.QUERY_CITY_2, [req.body.city2], function(err, results) {
+                    if (err) callback(err, null);
+                    callback(null, results[0].id);
+                });
+            },
+            cate1_id: function(callback){
+                connection.query(sqlCommon.QUERY_CATE_1, [req.body.cate1], function(err, results) {
+                    if (err) callback(err, null);
+                    callback(null, results[0].id);
+                });
+            },
+            cate2_id: function(callback){
+                connection.query(sqlCommon.QUERY_CATE_2, [req.body.cate2], function(err, results) {
+                    if (err) callback(err, null);
+                    if (results.length > 0) {
+                        callback(null, results[0].id);
+                    } else {
+                        callback(null, undefined);
+                    }
+                });
+            }
+        }, function(err, results){
+            if (err) return next(err);
+
+            _.extend(data, results);
+            connection.query(sqlCommon.INSERT_POST, data, function(err, results) {
+                res.sendStatus(200);
+            });
+        });
+    });
+};
+
+/**
+ * 글 수정 서비스
+ * @param req
+ * @param res
+ */
+exports.modifyPost = function(req, res, next) {
+
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        // get city1 id
+        var id = req.params.id;
+        var data = {
+            title: req.body.title,
+            content: req.body.content,
+            bbs_id: req.body.bo_table
+        };
+
+        // async.parallel() - https://github.com/caolan/async#parallel
+        async.parallel({
+            city1_id: function(callback){
+                connection.query(sqlCommon.QUERY_CITY_1, [req.body.city1], function(err, results) {
+                    if (err) callback(err, null);
+                    callback(null, results[0].id);
+                });
+            },
+            city2_id: function(callback){
+                connection.query(sqlCommon.QUERY_CITY_2, [req.body.city2], function(err, results) {
+                    if (err) callback(err, null);
+                    callback(null, results[0].id);
+                });
+            },
+            cate1_id: function(callback){
+                connection.query(sqlCommon.QUERY_CATE_1, [req.body.cate1], function(err, results) {
+                    if (err) callback(err, null);
+                    callback(null, results[0].id);
+                });
+            },
+            cate2_id: function(callback){
+                connection.query(sqlCommon.QUERY_CATE_2, [req.body.cate2], function(err, results) {
+                    if (err) callback(err, null);
+                    if (results.length > 0) {
+                        callback(null, results[0].id);
+                    } else {
+                        callback(null, undefined);
+                    }
+                });
+            }
+        }, function(err, results){
+            if (err) return next(err);
+
+            _.extend(data, results);
+            connection.query(sqlCommon.UPDATE_POST, [data, id], function(err, results) {
+                res.sendStatus(200);
+            });
+        });
+    });
+};
+
+/**
+ * 글 삭제 서비스
+ * @param req
+ * @param res
+ */
+exports.deletePost = function(req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        var id = req.params["id"];
+        connection.query(sqlCommon.DELETE_POST, [id], function(err, results){
+            if (err) return next(err);
+
+            res.sendStatus(200);
+        });
+    });
+};
+
+/**
+ * 시/도 조회 (city1)
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.queryCity1List = function(req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        connection.query(sqlCommon.QUERY_CITY_1_LIST, [], function(err, results){
+            if (err) return next(err);
+
+            console.log(results);
+            res.send(results);
+        });
+    });
+};
+
+/**
+ * 시/구/군 조회 (city2)
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.queryCity2List = function(req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        var city1_id = req.params["id"];
+        console.log(city1_id);
+        connection.query(sqlCommon.QUERY_CITY_2_LIST, [city1_id], function(err, results){
+            if (err) return next(err);
+
+            console.log(results);
+            res.send(results);
+        });
+    });
+};
+
+/**
+ * 대분류 조회
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.queryCate1List = function(req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        var bbs_id = req.params["bbs_id"];
+        connection.query(sqlCommon.QUERY_CATE_1_LIST, [bbs_id], function(err, results){
+            if (err) return next(err);
+
+            console.log(results);
+            res.send(results);
+        });
+    });
+};
+
+/**
+ * 소분류 조회
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.queryCate2List = function(req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) return next(err);
+
+        var bbs_id = req.params["bbs_id"];
+        connection.query(sqlCommon.QUERY_CATE_2_LIST, [bbs_id], function(err, results){
+            if (err) return next(err);
+
+            console.log(results);
+            res.send(results);
+        });
+    });
+};

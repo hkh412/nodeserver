@@ -1,0 +1,12 @@
+/**
+ * Created by hkh on 2015-01-24.
+ * post.js
+ * portal114 글 back-end 담당
+ */
+
+exports.upload = function(req, res) {
+    console.log(req.body);
+    console.log('post upload...');
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('');
+}

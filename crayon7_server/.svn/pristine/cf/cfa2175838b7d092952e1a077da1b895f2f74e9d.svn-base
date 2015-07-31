@@ -1,0 +1,13 @@
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th><span class="text-wrapper">번호</span></th>
+        <th><span class="text-wrapper">제목</span></th>
+        <th><span class="text-wrapper">지역</span></th>
+        <th><span class="text-wrapper">분류</span></th>
+        <th><span class="text-wrapper">등록일</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>

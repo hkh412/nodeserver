@@ -1,0 +1,7 @@
+﻿CREATE TABLE portal114.city2 (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  city1_id INT NULL,
+  ctdate VARCHAR(45) NULL,
+  PRIMARY KEY (id))
+COMMENT = '도시2 Table, 시/구/군';

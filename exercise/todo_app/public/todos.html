@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Todo List Basic</title>
+    <link rel="stylesheet" href="bootstrap.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="sammy.min.js"></script>
+    <!-- 페이지 라우트 -->
+    <script>
+        var app = Sammy(function() {
+            var checkLogin = function(successCallback, failCallback) {
+                $.ajax('/users/me', {
+                    data: { dummy: new Date().getTime() },
+                    success: function (xhr, result) {
+                        successCallback();
+                    },
+                    error: function() {
+                        failCallback();
+                    }
+                });
+            };
+
+            this.get('#login', function() {
+                checkLogin(function() {
+                   // log on
+                    location.hash = 'main';
+                }, function() {
+                    // not log on
+                    var template = $('#login-template').html();
+
+                    // 화면에 출력
+                    $(document.body).html(template);
+
+                    $('form').submit(function() {
+                        var login = $('#login').val();
+                        var password = $('#password').val();
+
+                        $.ajax('/users/login', {
+                            type: 'POST',
+                            data: {
+                                login: login,
+                                password: password,
+                                dummy: new Date().getTime()
+                            },
+                            success: function(){
+                                location.hash = 'main';
+                            },
+                            error: function(){
+                                $('#login').val('');
+                                $('#password').val('');
+                                alert('로그인에 실패했습니다.');
+                            }
+                        });
+
+                        event.preventDefault();
+                    }); // end of form submit
+                });
+            });
+            this.get('#register', function() {
+                checkLogin(function() {
+                    // log on
+                    location.hash = 'main';
+                }, function() {
+                    var template = $('#register-template').html();
+
+                    $(document.body).html(template);
+
+                    $('form').submit(function() {
+                        var login = $('#login').val();
+                        var password = $('#password').val();
+                        var confirm = $('#confirm-password').val();
+
+                        $.ajax('/users', {
+                            type: 'POST',
+                            data: {
+                                login: login,
+                                password: password,
+                                dummy: new Date().getTime()
+                            },
+                            success: function() {
+                                // 가입 성공
+                                location.hash = 'login';
+                            },
+                            error: function() {
+                                // 가입 실패
+                                $('#login').val('');
+                                $('#password').val('');
+                                $('#confirm-password').val('');
+                                alert('가입에 실패했습니다.');
+                            }
+                        });
+
+                        event.preventDefault();
+                    }); // end of submit event
+                });
+            });
+            this.get('#main', function() {
+                checkLogin(function() {
+                    $.getJSON('/todos', function (json) {
+                        $(document.body).html($('#main-template').html());
+                        $.each(json, function (index, item) {
+                            var output = '';
+                            output += '<label data-id="' + item._id + '" class="checkbox">';
+                            if (item.completed) {
+                                output += '<input type="checkbox" checked="checked" />';
+                            } else {
+                                output += '<input type="checkbox" />';
+                            }
+                            output += ' <span>' + item.title + '</span>';
+                            output += '</label>';
+
+                            // 화면에 출력
+                            $(output).css('opacity', item.completed ? 0.5 : '').appendTo('#todos');
+                        });
+
+                        $('#logout').click(function(event){
+                            $.ajax('/users/logout', {
+                                data: { dummy: new Date().getTime() },
+                                complete: function() {
+                                    location.hash = 'login';
+                                }
+                            });
+
+                            event.preventDefault();
+                        });
+                        $('#item-form').submit(function(event){
+                            var title = $('#title').val();
+
+                            $.ajax('/todos', {
+                                type: 'POST',
+                                data: {
+                                    title: title,
+                                    dummy: new Date().getTime()
+                                },
+                                success: function(item) {
+                                    var output = '';
+                                    output += '<label data-id"' + item._id + '" class="checkbox">';
+                                    output += ' <input type="checkbox" />';
+                                    output += ' <span>' + item.title + '</span>';
+                                    output += '</label>';
+                                    $('#todos').append(output);
+                                    $('#title').val('');
+                                },
+                                error: function() {
+                                    alert('오류가 발생했습니다.');
+                                }
+                            });
+
+                            event.preventDefault();
+                        });
+                        $('ul').on('change', 'input[type="checkbox"]', function(){
+                            var id = $(this).parent().attr('data-id');
+                            var completed = $(this).prop('checked');
+
+                            if (completed) {
+                                $(this).parent().css('opacity', 0.5);
+                            } else {
+                                $(this).parent().css('opacity', '');
+                            }
+
+                            $.ajax('/todos/'+id, {
+                                type: 'PUT',
+                                data: {
+                                    completed: completed,
+                                    dummy: new Date().getTime()
+                                }
+                            });
+                        });
+                        $('#remove-btn').click(function(event){
+                            $(':checked').each(function(){
+                                var id = $(this).parent().attr('data-id');
+
+                                $.ajax('/todos/'+id, {
+                                    type: 'DELETE',
+                                    data: { dummy: new Date().getTime() },
+                                    success: function() {
+                                        $(this).parent().remove();
+                                    }.bind(this)
+                                });
+                            });
+                        });
+                    });
+                }, function() {
+                   // not log on
+                    location.hash = 'login';
+                });
+            });
+        });
+    </script>
+
+    <!-- 페이지 준비 완료 -->
+    <script>
+        $(document).ready(function () {
+            app.run('#login');
+        });
+    </script>
+
+    <!-- 로그인 템플릿 -->
+    <script id="login-template" type="text/template">
+        <div class="container">
+            <h1>Login</h1>
+            <form>
+                <label>Username</label>
+                <input id="login" type="text" />
+                <label>Password</label>
+                <input id="password" type="password" />
+                <br />
+                <input type="submit" class="btn btn-primary" value="Login" />
+                <a class="btn" href="#register">Register</a>
+            </form>
+        </div>
+    </script>
+
+    <!-- 가입 템플릿 -->
+    <script id="register-template" type="text/template">
+        <div class="container">
+            <h1>Register</h1>
+            <form>
+                <label>Username</label>
+                <input id="login" type="text" />
+                <label>Password</label>
+                <input id="password" type="password" />
+                <label>Confirm Password</label>
+                <input id="confirm-password" type="password" /><br />
+                <br />
+                <input type="submit" class="btn btn-primary" value="Sign up" />
+                <a class="btn" href="#login">Login</a>
+            </form>
+        </div>
+    </script>
+
+    <!-- 메인 페이지 템플릿 -->
+    <script id="main-template" type="text/template">
+        <div class="container">
+            <a id="logout" class="logout btn-link pull-right">Logout</a>
+            <h1>Todos</h1>
+            <ul id="todos" class="unstyled">
+
+            </ul>
+            <form id="item-form" class="form-inline">
+                <input id="title" type="text" />
+                <button class="btn btn-success">Add</button>
+            </form>
+            <p><a id="remove-btn" class="btn btn-danger">Remove items</a></p>
+        </div>
+    </script>
+</head>
+<body>
+
+</body>
+</html>

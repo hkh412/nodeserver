@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>
+        #result { width: 500px; height: 150px; }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function (event) {
+                var print = function (jsonString) {
+                    try {
+                        var json = JSON.parse(jsonString);
+                        var output = JSON.stringify(json, null, 2);
+                        $('#result').text(output);
+                    } catch (exception) {
+                        $('#result').text(jsonString);
+                    }
+                };
+
+                switch ($('[name="method"]').val()) {
+                    case 'GET':
+                        $.ajax($('[name="url"]').val(), {
+                            type: 'GET',
+                            data: { dummy: new Date().getTime() },
+                            complete: function (req, status) {
+                                print(req.responseText);
+                            }
+                        });
+                        break;
+
+                    case 'POST':
+                        $.ajax($('[name="url"]').val(), {
+                            type: 'POST',
+                            data: {
+                                title: $('[name="title"]').val(),
+                                dummy: new Date().getTime()
+                            },
+                            complete: function (req, status) {
+                                print(req.responseText);
+                            }
+                        });
+                        break;
+
+                    case 'PUT':
+                        $.ajax($('[name="url"]').val(), {
+                            type: 'PUT',
+                            data: {
+                                completed: true,
+                                dummy: new Date().getTime()
+                            },
+                            complete: function (req, status) {
+                                print(req.responseText);
+                            }
+                        });
+                        break;
+
+                    case 'DELETE' :
+                        $.ajax($('[name="url"]').val(), {
+                            type: 'DELETE',
+                            data: { dummy: new Date().getTime() },
+                            complete: function (req, status) {
+                                print(req.responseText);
+                            }
+                        });
+                        break;
+                }
+
+                event.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>RESTful</h1>
+    <form id="form">
+        <table>
+            <tr>
+                <td>
+                    <select name="method">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                </td>
+                <td><input type="text" name="url"></td>
+            </tr>
+            <tr>
+                <td>title</td>
+                <td><input type="text" name="title" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" /></td>
+            </tr>
+        </table>
+    </form>
+
+    <textarea id="result" disabled="disabled"></textarea>
+</body>
+</html>

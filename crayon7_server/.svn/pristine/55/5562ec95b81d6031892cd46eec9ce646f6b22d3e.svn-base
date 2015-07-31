@@ -1,0 +1,14 @@
+/**
+ * Created by hkh on 2015-02-21.
+ */
+define([
+    'underscore',
+    'backbone',
+], function(_, Backbone){
+    var PostModel = Backbone.Model.extend({
+        idAttribute: 'id',
+        urlRoot: '/posts/'+this.id
+    });
+
+    return PostModel;
+});

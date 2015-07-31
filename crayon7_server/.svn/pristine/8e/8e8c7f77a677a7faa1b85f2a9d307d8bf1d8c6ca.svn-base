@@ -1,0 +1,19 @@
+/**
+ * Created by hkh on 2015-02-02.
+ */
+var list_task = require('./list_task');
+var detail_task = require('./detail_task');
+
+var N_PAGES = 1;
+
+var main = function() {
+    list_task.scrap(N_PAGES);
+    list_task.on('finish', function(list) {
+        console.log('finished');
+    });
+    list_task.on('error', function(err) {
+        console.log(err);
+    });
+};
+
+main();

@@ -1,0 +1,21 @@
+<div id="navbar-dropdown-group" class="dropdown-group">
+</div>
+
+<h2 class="sub-header">
+    <span id="sub-header-bbs">구인정보</span>
+    <span> > </span>
+    <span id="sub-header-city">전국</span>
+</h2>
+<hr />
+
+<div id="post-list" class="table-responsive">
+</div>
+
+<div>
+<<<<<<< .mine
+    <ul id="paginator"></ul>
+=======
+    <ul id="paginator">
+    </ul>
+>>>>>>> .r39
+</div>

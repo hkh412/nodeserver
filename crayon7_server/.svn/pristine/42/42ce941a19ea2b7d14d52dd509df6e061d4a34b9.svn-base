@@ -1,0 +1,175 @@
+/**
+ * Created by hkh on 2015-02-17.
+ */
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'app',
+    'text!templates/navbarTpl.html',
+    'text!templates/dropdownTpl.html',
+    'collections/city1coll',
+    'collections/city2coll',
+    'collections/cate1coll'
+], function($, _, Backbone, App,
+            navbarTemplate, dropdownTemplate, City1Collection, City2Collection, Cate1Collection){
+
+    var NavBarView = Backbone.View.extend({
+        el: '#navbar-dropdown-group',
+        template: _.template(navbarTemplate),
+        initialize: function(bbs_id) {
+
+            this.bbs_id = bbs_id;
+            this.$el.html(this.template());
+
+            // City1, Cate1 데이터 조회
+            this.city1Coll = new City1Collection();
+            this.listenTo(this.city1Coll, 'reset', this.renderCity1);
+            this.city1Coll.fetch({reset: true});
+
+            // City2 데이터는 City1 선택시 조회됨
+            this.city2Coll = new City2Collection();
+            this.listenTo(this.city2Coll, 'reset', this.renderCity2);
+
+            this.cate1Coll = new Cate1Collection(this.bbs_id);
+            this.listenTo(this.cate1Coll, 'reset', this.renderCate1);
+            this.cate1Coll.fetch({reset: true});
+
+            this.render();
+        },
+        events: {
+            'click #city1-select li': 'city1Select',
+            'click #city2-select li': 'city2Select',
+            'click #cate1-select li': 'cate1Select'
+        },
+        // menu가 바뀔 때 호출됨 (예: 구직->부동산)
+        update: function(bbs_id){
+            this.bbs_id = bbs_id;
+            this.cate1Coll.bbs_id = this.bbs_id;
+            this.cate1Coll.fetch({reset: true});
+
+            //this.render();
+            this.renderCate1();
+        },
+        render: function(){
+
+            this.renderCity1();
+            this.renderCity2();
+            this.renderCate1();
+        },
+        // 시/도 출력
+        renderCity1: function(){
+            console.log('renderCity1');
+
+            this.city1Coll.add(App.default.city1, {at: 0});
+            var $ul = $('#city1-select ul').empty();
+            this.city1Coll.each(function (item){
+                var template = _.template(dropdownTemplate);
+                $(template({ model:item.toJSON() })).appendTo($ul);
+            });
+            $('#city1-title').text(App.default.city1.name);
+            // reset event
+            App.events.trigger('city1Reset');
+        },
+        // 시/구/군 출력
+        renderCity2: function(){
+            console.log('renderCity2');
+
+            this.city2Coll.add(App.default.city2, {at: 0});
+            var $ul = $('#city2-select ul').empty();
+            this.city2Coll.each(function (item){
+                var template = _.template(dropdownTemplate);
+                $(template({ model:item.toJSON() })).appendTo($ul);
+            });
+            $('#city2-title').text(this.city2Coll.at(0).get('name'));
+        },
+        // 분류선택 출력
+        renderCate1: function(){
+            console.log('renderCate1');
+
+            this.cate1Coll.add(App.default.cate1, {at: 0});
+            var $ul = $('#cate1-select ul').empty();
+            this.cate1Coll.each(function (item){
+                var template = _.template(dropdownTemplate);
+                $(template({ model:item.toJSON() })).appendTo($ul);
+            });
+            $('#cate1-title').text(this.cate1Coll.at(0).get('name'));
+        },
+        // 시/구/군 조회
+        fetchCity2: function(city1Model) {
+            console.log('fetchCity2');
+            if (city1Model.id == 0) {
+                // unselect city1, reset city2
+                this.city2Coll.reset();
+            } else {
+                //this.city2Coll
+                this.city2Coll.city1_id = city1Model.id;
+                this.city2Coll.fetch({reset: true});
+            }
+        },
+        // 시/도 선택 이벤트
+        city1Select: function(event){
+            var index = $(event.currentTarget).index();
+            var model = this.city1Coll.at(index);
+            this.city1Index = index;
+
+            var param = model.toJSON();
+            if (index == 0) {
+                $('#city1-title').text(App.default.city1.name);
+                // 전체 조회
+                param.name = '';
+            } else {
+                $('#city1-title').text(model.get('name'));
+            }
+            this.fetchCity2(model);
+
+            App.events.trigger('city1Select', param);
+        },
+        // 시/구/군 선택 이벤트
+        city2Select: function(event){
+            var index = $(event.currentTarget).index();
+            var model = this.city2Coll.at(index);
+            this.city2Index = index;
+            $('#city2-title').text(model.get('name'));
+
+            var param = model.toJSON();
+            if (index == 0) {
+                // 전체 조회
+                param.name = '';
+            }
+
+            App.events.trigger('city2Select', param);
+        },
+        // 분류선택 이벤트
+        cate1Select: function(event){
+            var index = $(event.currentTarget).index();
+            var model = this.cate1Coll.at(index);
+            this.cate1Index = index;
+            $('#cate1-title').text(model.get('name'));
+
+            var param = model.toJSON();
+            if (index == 0) {
+                // 전체 조회
+                param.name = '';
+            }
+
+            App.events.trigger('cate1Select', param);
+        },
+        getCity1Index: function() {
+            return this.city1Index;
+        },
+        getCity2Index: function() {
+            return this.city2Index;
+        },
+        getCate1Index: function() {
+            return this.cate1Index;
+        },
+        close: function(){
+            console.log('close: NavBarView');
+            this.stopListening();
+            this.$el.empty();
+        }
+    });
+
+    return NavBarView;
+});

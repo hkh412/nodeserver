@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Less StyleSheet Basic</title>
+    <link rel="stylesheet/less" type="text/css" href="LessStyleSheet.less">
+    <script src="less-2.3.1.min.js"></script>
+</head>
+<body>
+
+</body>
+</html>

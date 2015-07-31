@@ -1,0 +1,105 @@
+/**
+ * Created by hkh on 2015-02-21.
+ */
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'app',
+    'bootstrap',
+    'paginator',
+    'text!templates/postListTpl.html',
+    'collections/postcoll',
+    'views/PostItemView'
+], function($, _, Backbone, App, bootstrap, paginator,
+            PostListTemplate, PostCollection, PostItemView){
+
+    var PostListView = Backbone.View.extend({
+        el: '#post-list',
+        template: _.template(PostListTemplate),
+        initialize: function(bbs_id){
+
+            this.bbs_id = bbs_id;
+            this.$el.empty().html(this.template());
+
+            this.postColl = new PostCollection(this.bbs_id);
+            this.listenTo(this.postColl, 'reset', this.render);
+            this.postColl.fetch({reset: true});
+
+            App.events.on('city1Select', this.city1Select, this);
+            App.events.on('city2Select', this.city2Select, this);
+            App.events.on('cate1Select', this.cate1Select, this);
+
+            var that = this;
+            this.paginatorOptions = {
+                bootstrapMajorVersion: 3,
+                useBootstrapTooltip: true,
+                numberOfPages: 5,
+                onPageClicked: function(e, originalEvent, type, page){
+                    console.log('paginator click - page: '+page);
+                    that.postColl.params.page = page;
+                    that.postColl.fetch({reset: true});
+                }
+            };
+        },
+        refresh: function(bbs_id) {
+            this.bbs_id = bbs_id;
+            this.postColl.bbs_id = this.bbs_id;
+            this.postColl.fetch({reset: true});
+        },
+        render: function(){
+            this.closeChildren();
+
+            // update data table
+            var $tbody = this.$el.find('tbody').empty();
+            this.postColl.each(function(item){
+                var itemView = new PostItemView({ model:item });
+                App.views.itemViews.push(itemView);
+                $tbody.append(itemView.$el);
+            });
+
+            // update paginator
+            _.extend(this.paginatorOptions, {
+                totalPages: this.postColl.totalPages,
+                currentPage: this.postColl.currentPage
+            });
+            $('#paginator').bootstrapPaginator(this.paginatorOptions);
+            console.log(this.paginatorOptions);
+        },
+        // city1 선택 시 list 재조회
+        city1Select: function(city1){
+            this.postColl.params.city2 = '';
+            this.postColl.params.city1 = city1.name;
+            this.postColl.fetch({reset: true});
+        },
+        // city2 선택 시 list 재조회
+        city2Select: function(city2){
+            this.postColl.params.city2 = city2.name;
+            this.postColl.fetch({reset: true});
+        },
+        // cate1 선택 시 list 재조회
+        cate1Select: function(cate1){
+            this.postColl.params.cate1 = cate1.name;
+            this.postColl.fetch({reset: true});
+        },
+        close: function(){
+            this.$el.empty();
+
+            App.events.off('city1Select', this.city1Select);
+            App.events.off('city2Select', this.city2Select);
+            App.events.off('cate1Select', this.cate1Select);
+            this.stopListening();
+
+            this.closeChildren();
+        },
+        closeChildren: function(){
+            var itemViews = App.views.itemViews;
+            _.each(itemViews, function(itemView){
+                itemView.close();
+            });
+            itemViews.splice(0, itemViews.length);
+        }
+    });
+
+    return PostListView;
+});

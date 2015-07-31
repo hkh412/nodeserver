@@ -1,0 +1,7 @@
+﻿CREATE TABLE portal114.category (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  type INT NULL,
+  ctdate DATE NULL,
+  PRIMARY KEY (id))
+COMMENT = '카테고리 Table [type:1 - 대분류, type:2 - 소분류]';

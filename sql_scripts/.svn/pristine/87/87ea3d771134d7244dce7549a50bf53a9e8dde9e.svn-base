@@ -1,0 +1,7 @@
+﻿CREATE TABLE portal114.bbs_category (
+  id INT NOT NULL AUTO_INCREMENT,
+  bbs_id INT NULL,
+  cate1_id INT NULL,
+  cate2_id INT NULL,
+  ctdate DATE NULL,
+  PRIMARY KEY (id));

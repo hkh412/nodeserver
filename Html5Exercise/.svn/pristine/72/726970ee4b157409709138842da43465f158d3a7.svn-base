@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function() {
+            window.onkeydown = function(event) {
+                var event = event || window.event;
+                alert(event.keyCode);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Keycode Test Program</h1>
+    <h2>Press Key to test</h2>
+</body>
+</html>

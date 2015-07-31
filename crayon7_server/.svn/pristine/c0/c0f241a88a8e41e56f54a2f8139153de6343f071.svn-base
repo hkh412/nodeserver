@@ -1,0 +1,59 @@
+/**
+ * Created by hkh on 2015-02-17.
+ */
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'app',
+    'views/ListFrameView',
+    'views/PostDetailView',
+], function($, _, Backbone, App, ListFrameView, PostDetailView){
+    var AppRouter = Backbone.Router.extend({
+        routes: {
+            '':         'showHome',
+            'job':      'showList',
+            'resume':   'showList',
+            'house':    'showList',
+            'market':   'showList',
+            'car':      'showList',
+            'adver':    'showList',
+            'posts/:id':    'showDetail'
+        },
+        showHome: function(){
+            location.hash = App.default.bbs.bbs_id;
+            App.events.trigger('bbsSelect', App.default.bbs.bbs_name);
+        },
+        /**
+         * 글 목록 생성 router
+         */
+        showList: function(){
+            console.log('router-> showList');
+            var bbs_id = location.hash.replace('#', '');
+
+            if (!App.views.listFrameView) {
+                App.views.listFrameView = new ListFrameView(bbs_id);
+            } else {
+                App.views.listFrameView.update(bbs_id);
+            }
+        },
+        showDetail: function(id){
+            console.log('show detail...on router: '+id);
+
+            if (!App.views.postDetailView) {
+                App.views.postDetailView = new PostDetailView(id);
+            } else {
+                App.views.postDetailView.update(id);
+            }
+        }
+    });
+
+    var initialize = function() {
+        var app_router = new AppRouter();
+        Backbone.history.start();
+        location.hash = App.default.bbs.bbs_id;     // job
+    };
+    return {
+        initialize: initialize
+    };
+});

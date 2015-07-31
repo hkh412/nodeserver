@@ -1,0 +1,22 @@
+<div id="navbar-dropdown-group" class="dropdown-group">
+</div>
+<form class="navbar-form navbar-right search-form" role="search">
+    <div class="form-group">
+        <input type="text" class="form-control search-box" placeholder="검색어를 입력하세요">
+        <button type="submit" class="btn btn-default">검색</button>
+    </div>
+</form>
+
+<h2 class="sub-header">
+    <span id="sub-header-bbs">구인정보</span>
+    <span> > </span>
+    <span id="sub-header-city">전국</span>
+</h2>
+<hr />
+
+<div id="post-list" class="table-responsive">
+</div>
+
+<div>
+    <ul id="paginator"></ul>
+</div>

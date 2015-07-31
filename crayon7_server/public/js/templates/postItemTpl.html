@@ -1,0 +1,17 @@
+<!-- 글번호 -->
+<td><span class="text-wrapper"><%=id%></span></td>
+<!-- 제목 -->
+<td class="col-md-5">
+    <a class="a-href-detail" href="#posts/<%=id%>">
+        <span class="text-wrapper">
+            <% if (title.length >= 50) { title = title.substring(0, 50)+"..."; } %>
+            <%=title%>
+        </span>
+    </a>
+</td>
+<!-- 지역 -->
+<td><span class="text-wrapper"><%=city1%>&nbsp;<%=city2%></span></td>
+<!-- 분류 -->
+<td><span class="text-wrapper"><%=cate1%></span></td>
+<!-- 날짜 -->
+<td><span class="text-wrapper"><%=date%></span></td>

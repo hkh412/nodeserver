@@ -1,0 +1,295 @@
+
+
+-- 구인정보
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('job', 1, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('job', 2, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('job', 3, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('job', 4, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('job', 5, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('job', 6, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('job', 7, NULL, 1, NOW());
+
+
+-- 구직정보
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('resume', 1, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('resume', 2, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('resume', 3, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('resume', 4, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('resume', 5, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('resume', 6, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('resume', 7, NULL, 1, NOW());
+
+
+-- 부동산
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 8, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 8, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 8, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 9, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 9, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 9, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 10, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 10, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 10, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 11, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 11, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 11, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 12, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 12, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 12, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 13, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 13, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 13, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 14, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 14, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 14, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 15, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 15, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 15, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 16, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 16, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 16, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 17, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 17, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 17, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 18, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 18, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 18, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 19, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 19, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 19, 72, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 20, 70, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 20, 71, 1, NOW());
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('house', 20, 72, 1, NOW());
+
+-- 중고시장
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 21, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 22, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 23, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 24, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 25, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 26, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 27, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 28, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 29, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 30, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 31, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 32, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 33, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 34, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 35, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 36, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 37, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('market', 38, NULL, 2, NOW());
+
+
+-- 중고차
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 39, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 40, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 41, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 42, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 43, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 44, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 45, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 46, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 47, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 48, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 49, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 50, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 51, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 52, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 53, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 54, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 55, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 56, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 57, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 58, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 59, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 60, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 61, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 62, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 63, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 64, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 65, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 67, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 68, NULL, 1, NOW());
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('car', 38, NULL, 2, NOW());
+
+-- 업체홍보
+
+INSERT INTO bbs_category(bbs_id, cate1_id, cate2_id, display, ctdt)
+values ('adver', 69, NULL, 1, NOW());

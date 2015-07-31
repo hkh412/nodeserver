@@ -1,0 +1,64 @@
+CREATE TABLE portal114.bbs (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  ctdate DATE NULL,
+  PRIMARY KEY (id))
+COMMENT = '게시판 Table';
+
+GO;
+
+CREATE TABLE portal114.bbs_category (
+  id INT NOT NULL AUTO_INCREMENT,
+  bbs_id INT NULL,
+  cate1_id INT NULL,
+  cate2_id INT NULL,
+  ctdate DATE NULL,
+  PRIMARY KEY (id))
+COMMENT = '카테고리 Table';
+
+GO;
+  
+ CREATE TABLE portal114.category (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  type INT NULL,
+  ctdate DATE NULL,
+  PRIMARY KEY (id))
+COMMENT = '카테고리 Table [type:1 - 대분류, type:2 - 소분류]';
+
+GO;
+
+CREATE TABLE portal114.city1 (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  ctdate DATE NULL,
+  PRIMARY KEY (id))
+COMMENT = '도시 Table, 시/도';
+
+GO;
+
+CREATE TABLE portal114.city2 (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  city1_id INT NULL,
+  ctdate VARCHAR(45) NULL,
+  PRIMARY KEY (id))
+COMMENT = '도시2 Table, 시/구/군';
+
+GO;
+
+CREATE TABLE portal114.post (
+  id INT NOT NULL AUTO_INCREMENT,
+  bbs_id INT NULL,
+  category_id INT NULL,
+  city1_id INT NULL,
+  city2_id INT NULL,
+  title VARCHAR(200) NULL,
+  content TEXT NULL,
+  ctdate DATE NULL,
+  update DATE NULL,
+  PRIMARY KEY (id))
+COMMENT = '게시글 Table';
+
+GO;
+

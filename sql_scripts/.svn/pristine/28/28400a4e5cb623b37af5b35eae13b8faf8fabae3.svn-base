@@ -1,0 +1,12 @@
+﻿CREATE TABLE portal114.post (
+  id INT NOT NULL AUTO_INCREMENT,
+  bbs_id INT NULL,
+  category_id INT NULL,
+  city1_id INT NULL,
+  city2_id INT NULL,
+  title VARCHAR(200) NULL,
+  content TEXT NULL,
+  ctdate DATE NULL,
+  update DATE NULL,
+  PRIMARY KEY (id))
+COMMENT = '게시글 Table';

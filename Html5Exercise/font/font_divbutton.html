@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- p 태그의 기본 font-size: 16px, h1은 32px, 2em은 두배 16px * 2 = 32px -->
+    <style>
+        .font_big { font-size: 2em; }
+        .font-italic { font-style: italic; }
+        .font_bold { font-weight: bold; }
+        .font_center { text-align: center; }
+
+        .button {
+            width: 150px;
+            height: 70px;
+            background-color: #ff6a00;
+            border: 5px solid #ffffff;
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px #a9a9a9;
+        }
+
+        .button > a {
+            display: block;
+            line-height: 70px;
+        }
+
+        a { text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="button">
+        <a href="#" class="font_big font-italic font_bold font_center">Click</a>
+    </div>
+</body>
+</html>

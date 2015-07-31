@@ -1,0 +1,63 @@
+﻿CREATE TABLE portal114.bbs (
+  id VARCHAR(45) NOT NULL,
+  name VARCHAR(45) NULL,
+  display INT NULL,
+  ctdt DATETIME NULL,
+  PRIMARY KEY (id))
+COMMENT = '게시판 Table';
+
+CREATE TABLE portal114.cate1 (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  bbs_id VARCHAR(45) NULL,
+  display INT NULL,
+  ctdt DATETIME NULL,
+  PRIMARY KEY (id))
+COMMENT = '카테고리 1 Table';
+
+CREATE TABLE portal114.cate2 (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  bbs_id VARCHAR(45) NULL,
+  display INT NULL,
+  ctdt DATETIME NULL,
+  PRIMARY KEY (id))
+COMMENT = '카테고리 2 Table';
+
+CREATE TABLE portal114.city1 (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  display INT NULL,
+  ctdt DATETIME NULL,
+  PRIMARY KEY (id))
+COMMENT = '도시 Table, 시/도';
+
+
+CREATE TABLE portal114.city2 (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  city1_id INT NULL,
+  display INT NULL,
+  ctdt VARCHAR(45) NULL,
+  PRIMARY KEY (id))
+COMMENT = '도시2 Table, 시/구/군';
+
+CREATE TABLE portal114.post (
+  id INT NOT NULL AUTO_INCREMENT,
+  bbs_id VARCHAR(45) NULL,
+  cate1_id INT NULL,
+  cate2_id INT NULL,
+  city1_id INT NULL,
+  city2_id INT NULL,
+  title VARCHAR(200) NULL,
+  content TEXT NULL,
+  city1 VARCHAR(45) NULL,
+  city2 VARCHAR(45) NULL,
+  cate1 VARCHAR(45) NULL,
+  del INT NULL,
+  ctdt DATETIME NULL,
+  updt DATETIME NULL,
+  PRIMARY KEY (id))
+COMMENT = '게시글 Table';
+
+

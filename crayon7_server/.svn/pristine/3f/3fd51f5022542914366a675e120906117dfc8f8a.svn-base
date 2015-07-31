@@ -1,0 +1,48 @@
+/**
+ * Created by hkh on 2015-01-24.
+ */
+
+var express = require('express');
+var app = express();
+var logger = require('morgan');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+//var site = require('./site');
+//var post = require('./post');
+
+module.exports = app;
+
+// Config
+
+app.set('view engine', 'jade');
+app.set('views', __dirname + '/views');
+
+if (!module.parent) {
+    app.use(logger('dev'));
+}
+
+app.use(methodOverride('_method'));
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static(__dirname + '/public'));
+
+// Routes
+
+// 글 목록 조회 서비스
+app.get('/posts', function(request, response){});
+
+// 글 상세 조회 서비스
+app.get('/posts/:id', function(request, response){});
+
+// 글 입력
+app.post('/posts', function(request, response){});
+
+// 글 수정
+app.put('/posts/:id', function(request, response){});
+
+app.del('/posts/:id', function(request, response){});
+
+if (!module.parent) {
+    app.listen(8001);
+    console.log('Express started on port 8001');
+}
+
